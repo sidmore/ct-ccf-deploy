@@ -1,0 +1,16 @@
+# action.yaml
+name: 'CT CCF application deployment'
+author: 'Cale Teeter <cale.teeter@microsoft.com>'
+description: 'Automated deployment of application to CCF'
+inputs:
+  application:
+    description: 'The application bundle to be deployed to CCF'
+    required: true
+outputs:
+  proposal:
+    description: 'The proposal id for the application proposal'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.application }}
