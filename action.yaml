@@ -2,6 +2,9 @@
 name: 'CT CCF application deployment'
 author: 'Cale Teeter <cale.teeter@microsoft.com>'
 description: 'Automated deployment of application to CCF'
+branding: 
+  icon: 'package'
+  color: 'blue'
 inputs:
   application:
     description: 'The application bundle to be deployed to CCF'
