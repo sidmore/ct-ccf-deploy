@@ -28,19 +28,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Get member cert
-        run: 'echo "$CERT" > cert'
-        shell: bash
-        env:
-          CERT: ${{ secrets.MEMBERCERT }}
-      - name: Get member key
-        run: 'echo "$KEY" > key'
-        shell: bash
-        env:
-          KEY: ${{ secrets.MEMBERKEY }}
       - name: CCF deploy
         uses: ./
         id: deploy
+        env:
+          CERTD: ${{ secrets.MEMBERCERT }}
+          KEYD: ${{ secrets.MEMBERKEY }}
         with:
           application: '<path to your bundled application>'
       - name: Get the proposal id
