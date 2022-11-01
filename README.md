@@ -6,7 +6,7 @@ This GitHub action is designed to automate deployment of an application to a CCF
 
 ## Pre-reqs
 
-These action require 3 secrets to be stored in GitHub.
+These action require 2 secrets to be stored in GitHub.
 
 - MEMBERCERT - The certificate that has access to the network, which will be used to sign the transactions for CCF.
 
@@ -29,7 +29,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: CCF deploy
-        uses: ./
+        uses: caleteeter/ct-ccf-deploy@v0.1.3-alpha
         id: deploy
         env:
           CERTD: ${{ secrets.MEMBERCERT }}
