@@ -6,6 +6,6 @@ echo "$CERTD" > /opt/ccf/bin/cert
 echo "$KEYD" > /opt/ccf/bin/key
 
 cd /opt/ccf/bin
-content=$(./scurl.sh ${CCF_URL}gov/proposals -k --signing-cert cert --signing-key key -X POST -H "Content-Type: application/json" --data-binary @set_js_app.json)
+content=$(ccf_cose_sign1 --ccf-gov-msg-type proposal --ccf-gov-msg-created_at `date -Is` --signing-key key --signing-cert cert --content set_js_app.json | curl ${CCF_URL}/gov/proposals --cacert service_cert.pem --data-binary @set_js_app.json -H "content-type: application/cose")
 proposal=$(echo "${content}" | jq '.proposal_id')
 echo "proposal=$proposal" >> $GITHUB_OUTPUT
